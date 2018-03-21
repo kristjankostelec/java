@@ -64,7 +64,32 @@ public class Graf {
 		return g;
 	}
 	
-		
+	public static Graf poln (int n){
+		Graf g = prazen(n);
+		for (int i = 1; i < n; i++){
+			for (int j = 0; j < n; j ++)
+				g.dodajPovezavo(g.tocke.get(i), g.tocke.get(j));
+		}
+		/*
+		for (Tocka t1 : g.tocke.values()){
+			for (Tocka t2 : t1.sosedi){
+				g.dodajPovezavo(t1,t2);
+			}
+		}
+		*/
+		return g;
+	}
+	
+	public void razporedi (int r, int a, int b){
+		int n = tocke.size();
+		int i = 0;
+		for (Tocka t : tocke.values()){
+			t.x = a + r * Math.cos(2*Math.PI*i/n);
+			t.y = b + r * Math.sin(2*Math.PI*((double)i/(double)n));
+			// i/n ne dela, ker mas cela stevila. narejeno je na dva razlicna nacina (ena pri cos in ena pri sin)
+			i ++;
+		}
+	}
 	
 
 }

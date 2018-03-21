@@ -5,10 +5,15 @@ public class Tocka {
 	protected Object ime;
 	protected Set<Tocka> sosedi;
 	//ce je private moras narest getter, da lahko dostopas do vrednosti
+	protected double x;
+	protected double y;
+	
 	
 	public Tocka (Object ime){
 		this.ime = ime;
 		this.sosedi = new HashSet<Tocka>();
+		x = 0;
+		y = 0;
 	
 	}
 	
