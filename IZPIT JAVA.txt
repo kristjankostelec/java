@@ -1,0 +1,134 @@
+IZPIT JAVA:
+
+podpičja, tipi (char, int, double,...), importaj
+
+for (int i=1; i <= n; i++){
+				...
+			}
+
+koeficient /= (dolzina - i - 1); //ce sta obe stevili celi, bo to deljenje delovalo v redu.
+
+Character.toUpperCase(stavek.charAt(i))
+
+med dvema znakoma --> flag
+
+parseInt - iz string v int
+
+SLOVAR Map<String,Integer> slovar = new HashMap<String,Integer>(); // ali pa HashTree
+
+GRAF:
+
+Map<Object,Tocka> tocke
+
+Graf(){
+		tocke = new HashMap<Object,Tocka>();
+		
+POLJUBEN TIP: Object nekineki
+
+
+
+
+
+
+
+BRANJE DATOTEK:
+
+public class Golovec {
+
+	public static void main(String[] args) throws IOException{
+		System.out.println(80f / 3.6 );
+		kazni("test.txt", "kaznjenci.txt");
+
+	}
+	
+	public static Integer kazni(String vhodna, String izhodna) throws IOException{
+		
+		BufferedReader vhod = new BufferedReader(new FileReader(vhodna)); 
+		PrintWriter izhod = new PrintWriter(new FileWriter(izhodna));
+		Integer stevec = 1;
+		
+		DecimalFormatSymbols symbol = new DecimalFormatSymbols();
+		symbol.setDecimalSeparator('.');
+		DecimalFormat df = new DecimalFormat("0.00",symbol);
+		df.setRoundingMode(RoundingMode.HALF_UP);
+		
+		while (vhod.ready()){
+			
+			String vrstica = vhod.readLine();
+			if (vrstica.equals(" ")) continue;
+			String[] podatki = vrstica.split(" ");			
+			
+			float hitrost = 622f / (Integer.parseInt(podatki[1])
+								- Integer.parseInt(podatki[0]));
+			
+			if (hitrost > (80f / 3.6 )) {
+				izhod.println(podatki[2] + " " + df.format(hitrost * 3.6));
+				stevec += 1;
+				
+			}
+		}
+		vhod.close();
+		izhod.close();
+		System.out.println(stevec); //a je rezultat pravilen?
+		return stevec;
+		
+	}
+	
+
+}
+
+
+
+
+
+
+DATOTEKE:
+
+		// IZOGIBAJ SE vrstica==""
+		// ne pozabi datotek zapret za sabo
+		
+		
+		
+		
+		
+		
+		
+ 
+public class Besede {
+
+	public static void main(String[] args) throws IOException{
+		prestej(args[0],args[1]);
+	}
+	
+	public static Integer prestej(String vhodna, String izhodna) throws IOException{ //tip execption izjema, jo pac dodas
+
+		BufferedReader vhod = new BufferedReader(new FileReader(vhodna));
+		PrintWriter izhod = new PrintWriter(new FileWriter(izhodna));
+		Hashtable<String, Integer> slovarBesed = new Hashtable<String, Integer>();
+				
+		while (vhod.ready()){
+			String vrstica = vhod.readLine().trim().toLowerCase(); //trim pobere ven konec vrstice; tolowercase kar cel string, ne rabis vsake besede posebej
+			if (vrstica.equals(" ")) continue;
+			String[] besede = vrstica.split(" +");
+						
+			for (String beseda : besede){  // enakovredno for (Int i; i < besede.lenth; i++){String beseda = besede[i];}
+				if (slovarBesed.contains(beseda)){
+					slovarBesed.put(beseda, slovarBesed.get(beseda) + 1);
+				} else{
+					slovarBesed.put(beseda,1);
+				}
+				
+			}
+			
+		}
+			
+			izhod.println("stevilo besed v datoteki:" + Integer.toString(slovarBesed.size()));
+			
+			for (String beseda : slovarBesed.keySet() ){
+				izhod.println(beseda);	
+			}
+				
+		vhod.close();
+		izhod.close();
+		return slovarBesed.size();	
+		
